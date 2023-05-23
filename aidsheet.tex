@@ -1,0 +1,152 @@
+\documentclass[5pt]{article}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{outlines}
+\newcounter{Chapcounter}
+
+
+\newcommand\showmycounter{\addtocounter{Chapcounter}{1}\themycounter}
+\newcommand{\chapter}[1] 
+{ {\centering          
+  \addtocounter{Chapcounter}{1} \Large \underline{\textbf{ \color{blue} Chapter \theChapcounter: ~#1}} }   
+  \addcontentsline{toc}{section}{ \color{blue} Chapter:~\theChapcounter~~ #1}    
+}
+
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+\colorlet{LightLavender}{Lavender!15}
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=Theorem,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=section]{theorem}
+\tcolorboxenvironment{theorem}{colback=LightGray}
+
+\declaretheoremstyle[name=Proposition,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=Principle,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{principle}
+\tcolorboxenvironment{principle}{colback=LightGreen}
+
+\declaretheoremstyle[name=Example,]{exsty}
+\declaretheorem[style=exsty,numberlike=theorem]{example}
+\declaretheoremstyle[name=Definition,]{defsty}
+\declaretheorem[style=defsty,numberlike=theorem]{definition}
+\setstretch{1.2}
+\geometry{
+    textheight=14in,
+    textwidth=8in,
+    top=1in,
+    headheight=5pt,
+    headsep=5pt,
+    footskip=30pt
+}
+
+% ------------------------------------------------------------------------------
+
+\begin{document}
+\chapter{Outcomes, Probability}
+
+\chapter{Random Variables}
+\section{General Definitions}
+\begin{definition}
+\textbf{(Random) Experiment} is a mechanism that results in random outcomes
+\end{definition}
+
+\begin{definition}
+\textbf{Sample Space} ($\Omega$) is the set of all possible outcomes from and experiment
+\end{definition}
+
+\begin{definition}
+\textbf{Mutually Exclusive} (Disjoint): $A\cup B = {} =\varnothing$
+\end{definition}
+
+\begin{definition}
+\textbf{A implies B} $A\cap B = A$, $A\subset B$
+\end{definition}
+
+\begin{definition}
+\textbf{Probability Function} $P$ on finite $\Omega$ assigns each event $A$ a $P(A)$ s.t. i) $P(A) \geq 0$ ii)$P(\Omega) = 1$ iii)$P(A\cup B) = P(A)+P(B)$ if disjoint.
+\end{definition}
+
+\begin{definition}
+\textbf{De Morgan's Law} for $A, B$, we have $(A\cup B)^c = A^c \cap B^c$ and $(A\cap B)^c = A^c \cup B^c$
+\end{definition}
+
+
+
+\begin{definition}
+\textbf{Event} is a subset of $\Omega$
+\end{definition}
+
+\begin{definition}
+The \textbf{probability mass function} of drm \textbf{X} is $p: \mathbb{R} \to [0,1]$ defined by $p(k) = P(x=k)$ for $-\infty < k < \infty$.
+\end{definition}
+
+\begin{definition}
+The \textbf{cumulative distributiotion fuction} $F$ of a drm \textbf{X} is the function $F: \mathbb{R}\to [0,1]$ defined by $F(a) = P(X \leq a)$ for $-\infty < a < \infty$
+\end{definition}
+
+\section{Common Distributions}
+\subsection{Discrete}
+\begin{definition}
+\textbf{Bernoulli} $X \sim \textbf{Ber}(\theta)$: Parameter $\theta$, $0 \leq \theta \leq 1$ and \textbf{pmf} given by
+$
+p_X(X)=
+\begin{cases}
+\theta &\qquad x = 1\\
+1 - \theta &\qquad x = 0\\ 
+\end{cases}$
+\end{definition}
+
+\begin{definition}
+\textbf{Binomial} $\text{Bin}(n,\theta)$: Parameters $n$ and $\theta$ with $n \in \mathbb{N}$ and $0 \leq \theta \leq 1$ and \textbf{pmf} given by $p_X(x) = {n \choose x}\theta^x(1-\theta)^{n-x}$
+\end{definition}
+
+\begin{definition}
+\textbf{Geometric} $\text{Geo}(\theta)$: Parameters $\theta$ with $0 \leq \theta \leq 1$ and \textbf{pmf} given by $p_X(x) = (1-\theta)^{x-1} \theta$ for $x \in \mathbb{N}.$
+\end{definition}
+
+\begin{definition} 
+\textbf{Poisson} $\text{Pois}(\lambda)$: Parameters $\lambda$ with $\lambda > 0$ and \textbf{pmf} given by $p_X(x) = \frac{e^{-\lambda}\lambda^x}{x!}$ for $x \in \mathbb{Z}^+$
+\end{definition}
+\subsection{Continuous}
+\begin{definition}
+\textbf{Uniform} $U(\alpha,\beta)$: on interval $[\alpha,\beta]$ and \textbf{pdf} given by $f(x) = \begin{cases}
+\frac{1}{\beta - \alpha} \qquad & \alpha \leq x \leq \beta\\
+0 &\textbf{otherwise}
+\end{cases}$
+\end{definition}
+
+\begin{definition}
+\textbf{Exponential} $\textbf{Exp}(\lambda)$: Parameter $\lambda$ with $\lambda > 0$ and \textbf{pdf} $f(x) = \begin{cases}
+\lambda e^{-\lambda x} \qquad & x \geq 0\\
+0 &otherise
+\end{cases}$
+\end{definition}
+
+\begin{definition}
+\textbf{Gamma} $G \sim \textbf{Gamma}(\alpha, \beta)$: Parameters $\alpha, \beta$ with $\beta, \alpha > 0$ with \textbf{pdf} given by $f(x)=\frac{1}{\Gamma(a)}\beta^\alpha x^{\alpha - 1} e^{-\beta x}$ for $x>0$
+\end{definition}
+
+\begin{definition}
+\textbf{Normal} $N(\mu, \sigma^2)$: Parameters $\mu, \sigma^2$ with $\sigma^0 > 0$ with \textbf{pdf} $f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp{\{-\frac{1}{2}(\frac{x-\mu}{\sigma}^2)\}}$\\
+\textbf{Standard Normal Distribution} is when $\mu = 0$ and $\sigma^2 = 1$ with \textbf{pdf} $\phi = \frac{1}{\sqrt{2pi}}e^{-\frac{1}{2}z^2}$ and \textbf{cdf} $\Phi = \int^a_{-\infty}\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2}dz$
+\end{definition}
+
+\chapter{Quantile, Percent, and Median}
+\begin{definition}
+\textbf{Quantile Function} of random variable $X$ with \textbf{cdf} $F$ is $F^{-1}=\min{\{x: F(x) \geq T\}}$ for $0\leq T \leq 1$
+\end{definition}
+\end{document}
