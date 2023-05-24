@@ -220,15 +220,33 @@ Note: transform $X \sim N(\mu, \sigma^2)$ to $Z = \frac{X-\mu}{\sigma}$ to use w
 
 \section{Quantile, Percent, and Median}
 \begin{definition}
-\textbf{Quantile Function} of random variable $X$ with \textbf{cdf} $F$ is $F^{-1}=\min{\{x: F(x) \geq T\}}$ for $0\leq T \leq 1$
+\text{The $p^\text{th}$ Quantile} or $100 \cdot p^\text{th}$ percentile of distribution $X$ is the smallest number $q_p$ s.t. $F(q_p) = P(X\leq q_p) = p$
+\end{definition}
+
+\begin{definition}
+\textbf{The Median} is the 50th percentile.
+\end{definition}
+
+\begin{definition}
+\textbf{Quantile Function} of random variable $X$ with \textbf{cdf} $F$ is $F^{-1}=\min{\{x: F(x) \geq T\}}$ for $0\leq T \leq 1$. Exponential has $-\frac{\ln(1-p)}{\lambda}$.
 \end{definition}
 \section{Useful Stuff}
-\begin{equation}
-{n \choose k} = \frac{n!}{k!(n-k)!}
-\end{equation}
-\begin{equation}
-x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
-\end{equation}
-
-
+${n \choose k} = \frac{n!}{k!(n-k)!}$ \qquad $x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$
+\section{R code}
+dxxx(x, mean, sd, log) for computing the pmf for discrete and for continuous distribution\\
+pxxx(q, mean, sd, lower.tail, log.p) for computing the cdf\\
+qxxx(p, mean, sd, lower.tail, log.p) for computing the quantiles\\
+rxxx(n, mean, sd) for simulating a value from the distribution.\\
+sample(data, size, replace=FALSE(default)) for randomly sampling from a set.\\\\
+matrix(vector of values, num of rows). Let mat be a matrix, mat[x], mat[vector], mat[row, column], mat[row vector, column vector].\\
+rowSums(x(two dimensional array), na.rm, dims)\\
+Relational operators/// equate: ==, not equal: !=, leq: $<=$, geq: $=>$, value in vector: \%in\%\\
+Logical operators/// AND(single logicals): \&\& , AND(vectors and single): \&, OR(single): $\vert\vert$, OR(vector and single): $\vert\vert$, Negation: [operator]!, AllTrue: all(), SomeTrue: any().\\
+Loops: for (i in [vector])\{\}\\
+ggplot(mapping = aes(x = x, y = y)): creates a ggplot canvas and maps the vector x to x axis scale and vector y to y axis scale in ggplot.\\
+$theme_classic()$: sets the overall look of the plot to the “classic” theme. \ \
+$geom_point()$: adds points as specified by the mapping provided in aes().\ \
+$geom_line()$: adds a line as specified by the mapping provided in aes().\ \
+labs(title = "y is square root of x", x = "x", y = "square root of x"): customizes the plot and axes titles.\ \
++: adds the layers together.\\
 \end{document}
