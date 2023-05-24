@@ -12,6 +12,7 @@
 \usepackage{tcolorbox}
 \usepackage{outlines}
 \newcounter{Chapcounter}
+\usepackage[compact]{titlesec}
 
 
 \newcommand\showmycounter{\addtocounter{Chapcounter}{1}\themycounter}
@@ -41,25 +42,24 @@
 
 \declaretheoremstyle[name=Example,]{exsty}
 \declaretheorem[style=exsty,numberlike=theorem]{example}
+
 \declaretheoremstyle[name=Definition,]{defsty}
 \declaretheorem[style=defsty,numberlike=theorem]{definition}
+
 \setstretch{1.2}
 \geometry{
-    textheight=14in,
+    textheight=10.5in,
     textwidth=8in,
-    top=1in,
-    headheight=5pt,
-    headsep=5pt,
+    top=0.25in,
+    headheight=1pt,
+    headsep=1pt,
     footskip=30pt
 }
 
 % ------------------------------------------------------------------------------
 
 \begin{document}
-\chapter{Outcomes, Probability}
-
-\chapter{Random Variables}
-\section{General Definitions}
+\section{Outcomes, events, and Probability}
 \begin{definition}
 \textbf{(Random) Experiment} is a mechanism that results in random outcomes
 \end{definition}
@@ -69,7 +69,16 @@
 \end{definition}
 
 \begin{definition}
-\textbf{Mutually Exclusive} (Disjoint): $A\cup B = {} =\varnothing$
+\textbf{Event} is a subset of $\Omega$
+\end{definition}
+
+\begin{definition}
+\textbf{Mutually Exclusive} (Disjoint): $A\cup B = \{\} =\varnothing$
+\end{definition}
+
+\begin{definition}
+\textbf{Commutative}: $A\cup B = B \cup A$ $\vert$ \textbf{Associative}: $(A\cup B) \cup C = A \cup (B \cup C)$ $\vert$ \\
+\textbf{Distributive} $A\cup (B\cap C) = (A\cup B)\cap (A\cup C)$, $A\cap (B\cup C) = (A\cap B)\cup (A\cap C)$
 \end{definition}
 
 \begin{definition}
@@ -77,7 +86,30 @@
 \end{definition}
 
 \begin{definition}
-\textbf{Probability Function} $P$ on finite $\Omega$ assigns each event $A$ a $P(A)$ s.t. i) $P(A) \geq 0$ ii)$P(\Omega) = 1$ iii)$P(A\cup B) = P(A)+P(B)$ if disjoint.
+\textbf{Probability Function} $P$ on finite $\Omega$ assigns each event $A$ a $P(A)$ s.t. (Axioms) \\
+i) $P(A) \geq 0$ ii)$P(\Omega) = 1$ iii)$P(A\cup B) = P(A)+P(B)$ if disjoint.
+\end{definition}
+
+\begin{definition}
+\textbf{Useful Probabilities}: \emph{Union}: $P(A\cup B) = P(A\cap B^c) + P(A\cap B) + (A^c \cap B)$ $\vert$ \emph{Complement}\\
+ $P(\Omega) = P(A) + P(A^c)$, $P(A^c) = 1 - P(A)$
+\end{definition}
+
+\begin{definition}
+\textbf{Calculating by counting} applies only when i) all outcomes are equally likely ii) $\Omega$ is finite then \\
+$P(A) = \frac{\text{number of outcomes belonging to }A}{\text{total number of outcomes in }\Omega}$
+\end{definition}
+
+\begin{definition}
+\textbf{Product of Sample Space} in general is $\Omega = \Omega_1 \times \Omega_2 = \{(\omega_1, \omega_2): \omega_1 \in \Omega_1, \omega_2 \in \Omega_2\}$
+\end{definition}
+
+\begin{definition}
+\textbf{Permutation} of a set \textbf{\emph{N}} of size \textbf{\emph{n}} is $_NP_n = \frac{N!}{(N-n)!}$.
+\end{definition}
+
+\begin{definition}
+\textbf{Combination} of a set \textbf{\emph{N}} of size \textbf{\emph{n}} is ${N \choose n} = \frac{N!}{(N-n)! \cdot N!}$
 \end{definition}
 
 \begin{definition}
@@ -85,17 +117,34 @@
 \end{definition}
 
 
-
+\section{Conditional Probability}
 \begin{definition}
-\textbf{Event} is a subset of $\Omega$
+\textbf{Conditional Probability} of $A$ given $C$ is, in general, $P(A|C) = \frac{P(A\cap C}{C}$ for any $P(C)>0$
 \end{definition}
 
 \begin{definition}
-The \textbf{probability mass function} of drm \textbf{X} is $p: \mathbb{R} \to [0,1]$ defined by $p(k) = P(x=k)$ for $-\infty < k < \infty$.
+\textbf{Law of Total Probability} states, for disjoint $C_1,\dots,C_m$, $C_1 \cup \dots \cup C_m = \Omega$, $P(A) = \sum^m_{i=1} [P(A|C_i)P(C_i)]$
 \end{definition}
 
 \begin{definition}
-The \textbf{cumulative distributiotion fuction} $F$ of a drm \textbf{X} is the function $F: \mathbb{R}\to [0,1]$ defined by $F(a) = P(X \leq a)$ for $-\infty < a < \infty$
+\textbf{Bayes' Rule} states, for disjoint $C_1,\dots,C_m$, $C_1 \cup \dots \cup C_m=\Omega$, $P_(C_i|A) = \frac{P(A|C_i)\cdot P(C_i)}{\sum^m_{i=1}[P(A|C_i)P(C_i)}$
+\end{definition}
+
+\begin{definition}
+\textbf{Independence} between $A$ and $B$ implies $P(A|B) = P(A)$
+\end{definition} 
+\section{Random Variables}
+\begin{definition}
+The \textbf{probability mass function} of drv \textbf{X} is $p: \mathbb{R} \to [0,1]$ defined by $p(k) = P(x=k)$ for $-\infty < k < \infty$.
+\end{definition}
+
+\begin{definition}
+\textbf{Continuous Random Variable} $X$ has $P(a\leq X \leq B) = \int^b_a f(x) dx$ with i) $\forall x, f(x) > 0$ ii) $\int^\infty_{-\infty}f(x)dx = 1$.\\
+$f$ is the \textbf{probability density function} of $X$ and $f(x)$ is the \textbf{probability density} of $X$ at $x$. Note: a random variable is $continous$ if its cdf is continuous everywhere
+\end{definition}
+
+\begin{definition}
+The \textbf{cumulative distribution function} $F$ of a drv or crv \textbf{X} is the function $F: \mathbb{R}\to [0,1]$ defined by $F(a) = P(X \leq a)$ for $-\infty < a < \infty$
 \end{definition}
 
 \section{Common Distributions}
@@ -107,46 +156,63 @@ p_X(X)=
 \begin{cases}
 \theta &\qquad x = 1\\
 1 - \theta &\qquad x = 0\\ 
-\end{cases}$
+\end{cases}$\\
+Useful for modelling experiments with exactly two possible outcomes
 \end{definition}
 
 \begin{definition}
-\textbf{Binomial} $\text{Bin}(n,\theta)$: Parameters $n$ and $\theta$ with $n \in \mathbb{N}$ and $0 \leq \theta \leq 1$ and \textbf{pmf} given by $p_X(x) = {n \choose x}\theta^x(1-\theta)^{n-x}$
+\textbf{Binomial} $\text{Bin}(n,\theta)$: Parameters $n$ and $\theta$ with $n \in \mathbb{N}$ and $0 \leq \theta \leq 1$ and \textbf{pmf} given by $p_X(x) = {n \choose x}\theta^x(1-\theta)^{n-x}$\\
+This distribution describes a sum of $n$ \emph{\textbf{independent}} and \emph{\textbf{identical}} Bernoulli trials
 \end{definition}
 
 \begin{definition}
-\textbf{Geometric} $\text{Geo}(\theta)$: Parameters $\theta$ with $0 \leq \theta \leq 1$ and \textbf{pmf} given by $p_X(x) = (1-\theta)^{x-1} \theta$ for $x \in \mathbb{N}.$
+\textbf{Geometric} $\text{Geo}(\theta)$: Parameters $\theta$ with $0 \leq \theta \leq 1$ and \textbf{pmf} given by $p_X(x) = (1-\theta)^{x-1} \theta$ for $x \in \mathbb{N}.$\\
+The number of identical Bernoulli trials until the first event
 \end{definition}
 
 \begin{definition} 
-\textbf{Poisson} $\text{Pois}(\lambda)$: Parameters $\lambda$ with $\lambda > 0$ and \textbf{pmf} given by $p_X(x) = \frac{e^{-\lambda}\lambda^x}{x!}$ for $x \in \mathbb{Z}^+$
+\textbf{Poisson} $\text{Pois}(\lambda)$: Parameters $\lambda$ with $\lambda > 0$ and \textbf{pmf} given by $p_X(x) = \frac{e^{-\lambda}\lambda^x}{x!}$ for $x \in \mathbb{Z}^+$\\
+Captures the count of events in a fixed interval of Poisson Process. Assumptions: i) the expected rate $\lambda$ is constant ii) all events are independent of each other iii) events cannot occur simultaneously
 \end{definition}
+
 \subsection{Continuous}
 \begin{definition}
 \textbf{Uniform} $U(\alpha,\beta)$: on interval $[\alpha,\beta]$ and \textbf{pdf} given by $f(x) = \begin{cases}
 \frac{1}{\beta - \alpha} \qquad & \alpha \leq x \leq \beta\\
 0 &\textbf{otherwise}
-\end{cases}$
+\end{cases}$\\
+Uniform distribution assigns equal probabilities across a fixed interval, useful for modelling \emph{completely arbitrary} experiments/\emph{complete ignorance} about probabilities
 \end{definition}
 
 \begin{definition}
 \textbf{Exponential} $\textbf{Exp}(\lambda)$: Parameter $\lambda$ with $\lambda > 0$ and \textbf{pdf} $f(x) = \begin{cases}
 \lambda e^{-\lambda x} \qquad & x \geq 0\\
 0 &otherise
-\end{cases}$
+\end{cases}$\\
+Useful for modelling time until next event in a Poisson process. $\lambda$ is the expected rate of events. Note: $F_Y$ is continuous everywhere, $f_Y$ is discontinuous at 0.
 \end{definition}
 
 \begin{definition}
-\textbf{Gamma} $G \sim \textbf{Gamma}(\alpha, \beta)$: Parameters $\alpha, \beta$ with $\beta, \alpha > 0$ with \textbf{pdf} given by $f(x)=\frac{1}{\Gamma(a)}\beta^\alpha x^{\alpha - 1} e^{-\beta x}$ for $x>0$
+\textbf{Gamma} $G \sim \textbf{Gamma}(\alpha, \beta)$: Parameters $\alpha, \beta$ with $\beta, \alpha > 0$ with \textbf{pdf} given by $f(x)=\frac{1}{\Gamma(a)}\beta^\alpha x^{\alpha - 1} e^{-\beta x}$ for $x>0$\\
 \end{definition}
 
 \begin{definition}
 \textbf{Normal} $N(\mu, \sigma^2)$: Parameters $\mu, \sigma^2$ with $\sigma^0 > 0$ with \textbf{pdf} $f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp{\{-\frac{1}{2}(\frac{x-\mu}{\sigma}^2)\}}$\\
-\textbf{Standard Normal Distribution} is when $\mu = 0$ and $\sigma^2 = 1$ with \textbf{pdf} $\phi = \frac{1}{\sqrt{2pi}}e^{-\frac{1}{2}z^2}$ and \textbf{cdf} $\Phi = \int^a_{-\infty}\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2}dz$
+\textbf{Standard Normal Distribution} is when $\mu = 0$ and $\sigma^2 = 1$ with \textbf{pdf} $\phi = \frac{1}{\sqrt{2pi}}e^{-\frac{1}{2}z^2}$ and \textbf{cdf} $\Phi = \int^a_{-\infty}\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2}dz$\\
+Often used to model observational errors. Note: Normal distributions have symmetry along its centre, $\mu$ and $\sigma$ controls the spread of distribution.
 \end{definition}
 
-\chapter{Quantile, Percent, and Median}
+\section{Quantile, Percent, and Median}
 \begin{definition}
 \textbf{Quantile Function} of random variable $X$ with \textbf{cdf} $F$ is $F^{-1}=\min{\{x: F(x) \geq T\}}$ for $0\leq T \leq 1$
 \end{definition}
+\section{Useful Stuff}
+\begin{equation}
+{n \choose k} = \frac{n!}{k!(n-k)!}
+\end{equation}
+\begin{equation}
+x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+\end{equation}
+
+
 \end{document}
