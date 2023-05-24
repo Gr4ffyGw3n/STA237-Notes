@@ -149,7 +149,11 @@ The \textbf{probability mass function} of drv \textbf{X} is $p: \mathbb{R} \to [
 \end{definition}
 
 \begin{definition}
-\textbf{Continuous Random Variable} $X$ has $P(a\leq X \leq B) = \int^b_a f(x) dx$ with i) $\forall x, f(x) > 0$ ii) $\int^\infty_{-\infty}f(x)dx = 1$.\\
+\textbf{Discrete Random Variable} $X$ takes a countable number of values.
+\end{definition}
+
+\begin{definition}
+\textbf{Continuous Random Variable} $X$ has $P(A\leq X \leq B) = \int^b_a f(x) dx$ with i) $\forall x, f(x) \geq 0$ ii) $\int^\infty_{-\infty}f(x)dx = 1$.\\
 $f$ is the \textbf{probability density function} of $X$ and $f(x)$ is the \textbf{probability density} of $X$ at $x$. Note: a random variable is $continous$ if its cdf is continuous everywhere
 \end{definition}
 
@@ -199,7 +203,8 @@ Uniform distribution assigns equal probabilities across a fixed interval, useful
 \lambda e^{-\lambda x} \qquad & x \geq 0\\
 0 &otherise
 \end{cases}$\\
-Useful for modelling time until next event in a Poisson process. $\lambda$ is the expected rate of events. Note: $F_Y$ is continuous everywhere, $f_Y$ is discontinuous at 0.
+Useful for modelling time until next event in a Poisson process. $\lambda$ is the expected rate of events. Note: $F_Y$ is continuous everywhere, $f_Y$ is discontinuous at 0.\\
+\textbf{CDF} given by $1-e^{-\lambda  x}$
 \end{definition}
 
 \begin{definition}
@@ -208,8 +213,9 @@ Useful for modelling time until next event in a Poisson process. $\lambda$ is th
 
 \begin{definition}
 \textbf{Normal} $N(\mu, \sigma^2)$: Parameters $\mu, \sigma^2$ with $\sigma^0 > 0$ with \textbf{pdf} $f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp{\{-\frac{1}{2}(\frac{x-\mu}{\sigma}^2)\}}$\\
-\textbf{Standard Normal Distribution} is when $\mu = 0$ and $\sigma^2 = 1$ with \textbf{pdf} $\phi = \frac{1}{\sqrt{2pi}}e^{-\frac{1}{2}z^2}$ and \textbf{cdf} $\Phi = \int^a_{-\infty}\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2}dz$\\
-Often used to model observational errors. Note: Normal distributions have symmetry along its centre, $\mu$ and $\sigma$ controls the spread of distribution.
+\textbf{Standard Normal Distribution} is when $\mu = 0$ and $\sigma^2 = 1$ with \textbf{pdf} $\phi(z) = \frac{1}{\sqrt{2pi}}e^{-\frac{1}{2}z^2}$ and \textbf{cdf} $\Phi(a) = \int^a_{-\infty}\frac{1}{\sqrt{2\pi}}e^{-\frac{1}{2}z^2}dz$\\
+Often used to model observational errors. Note: Normal distributions have symmetry along its centre, $\mu$ and $\sigma$ controls the spread of distribution. Note: $\Phi (-a) = 1-\Phi(a)$\\
+Note: transform $X \sim N(\mu, \sigma^2)$ to $Z = \frac{X-\mu}{\sigma}$ to use with LUT. $1-\Phi(a) = P(Z\geq a)$ for $N(0,1)$
 \end{definition}
 
 \section{Quantile, Percent, and Median}
